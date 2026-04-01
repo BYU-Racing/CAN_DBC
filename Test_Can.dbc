@@ -36,6 +36,24 @@ BS_:
 BU_:
 
 
+BO_ 162 MotorTemps: 8 Vector__XXX
+ SG_ TorqueShudder : 48|16@1- (1,0) [-32768|32767] "" Vector__XXX
+ SG_ MotorTemp : 32|16@1- (1,0) [-32768|32767] "" Vector__XXX
+ SG_ HotSpotTemp : 16|16@1- (1,0) [-32768|32767] "" Vector__XXX
+ SG_ CoolantTemp : 0|16@1- (1,0) [-32768|32767] "" Vector__XXX
+
+BO_ 161 ControlBoardTemp: 8 Vector__XXX
+ SG_ RTD3 : 48|16@1- (1,0) [-32768|32767] "" Vector__XXX
+ SG_ RTD2 : 32|16@1- (1,0) [-32768|32767] "" Vector__XXX
+ SG_ RTD1 : 16|16@1- (1,0) [-32768|32767] "" Vector__XXX
+ SG_ ControlBoardTemp : 0|16@1- (1,0) [-32768|32767] "" Vector__XXX
+
+BO_ 160 InverterTemps: 8 Vector__XXX
+ SG_ GateDriverTemp : 48|16@1- (1,0) [-32768|32767] "" Vector__XXX
+ SG_ TempPhaseC : 32|16@1- (1,0) [-32768|32767] "" Vector__XXX
+ SG_ TempPhaseB : 16|16@1- (1,0) [-32768|32767] "" Vector__XXX
+ SG_ TempPhaseA : 0|16@1- (1,0) [-32768|32767] "" Vector__XXX
+
 BO_ 6 TireTemperature: 7 Vector__XXX
  SG_ RearRight_Temp_Mid m3 : 40|16@1- (1,0) [-32768|32767] "" Vector__XXX
  SG_ RearRight_Temp_Out m3 : 24|16@1- (1,0) [-32768|32767] "" Vector__XXX

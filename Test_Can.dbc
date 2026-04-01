@@ -36,17 +36,36 @@ BS_:
 BU_:
 
 
-BO_ 3221225472 VECTOR__INDEPENDENT_SIG_MSG: 0 Vector__XXX
- SG_ New_Signal_9 : 0|8@1- (1,0) [0|0] "" Vector__XXX
+BO_ 6 TireTemperature: 7 Vector__XXX
+ SG_ RearRight_Temp_Mid m3 : 40|16@1- (1,40) [-32728|32807] "" Vector__XXX
+ SG_ RearRight_Temp_Out m3 : 24|16@1- (1,24) [-32760|32775] "" Vector__XXX
+ SG_ RearLeft_Temp_Mid m2 : 40|16@1- (1,40) [-32760|32775] "" Vector__XXX
+ SG_ RearLeft_Temp_Out m2 : 24|16@1- (1,24) [-32760|32775] "" Vector__XXX
+ SG_ FrontRight_Temp_Mid m1 : 40|16@1- (1,40) [-32728|32807] "" Vector__XXX
+ SG_ FrontRight_Temp_Out m1 : 24|16@1- (1,24) [-32744|32791] "" Vector__XXX
+ SG_ FrontLeft_Temp_Mid m0 : 40|16@1- (1,40) [-32728|32807] "" Vector__XXX
+ SG_ FrontLeft_Temp_Out m0 : 24|16@1- (1,24) [-32744|32791] "" Vector__XXX
+ SG_ RearRight_Temp_In m3 : 8|16@1- (1,8) [-32760|32775] "" Vector__XXX
+ SG_ RearLeft_Temp_In m2 : 8|16@1- (1,8) [-32760|32775] "" Vector__XXX
+ SG_ FrontRight_Temp_In m1 : 8|16@1- (1,8) [-32760|32775] "" Vector__XXX
+ SG_ FrontLeft_Temp_In m0 : 8|16@1- (1,8) [-32760|32775] "" Vector__XXX
+ SG_ TireTemperature_MultiPlex M : 0|8@1+ (1,0) [0|3] "" Vector__XXX
 
-BO_ 4 RVC: 6 Vector__XXX
- SG_ Y_Rotation m4 : 8|32@1- (1,0) [-2147483648|2147483647] "" Vector__XXX
- SG_ Z_Rotation m5 : 8|32@1- (1,0) [-2147483648|2147483647] "" Vector__XXX
- SG_ X_Rotation m3 : 8|32@1- (1,8) [-2147483640|2147483655] "" Vector__XXX
- SG_ Z_Acceleration m2 : 8|32@1- (1,8) [-2147483640|2147483655] "" Vector__XXX
- SG_ Y_Acceleration m1 : 8|32@1- (1,8) [-2147483640|2147483655] "" Vector__XXX
- SG_ X_Acceleration m0 : 8|32@1- (1,8) [-2147483640|2147483655] "" Vector__XXX
- SG_ RVC_MultiPlex M : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+BO_ 5 TireRPM: 5 Vector__XXX
+ SG_ RearRight m3 : 8|32@1- (1,8) [-3.4E+38|3.4E+38] "" Vector__XXX
+ SG_ RearLeft m2 : 8|32@1- (1,8) [-3.4E+38|3.4E+38] "" Vector__XXX
+ SG_ FrontRight m1 : 8|32@1- (1,8) [-3.4E+38|3.4E+38] "" Vector__XXX
+ SG_ FrontLeft m0 : 8|32@1- (1,8) [-3.4E+38|3.4E+38] "" Vector__XXX
+ SG_ TireRPM_MultiPlex M : 0|8@1+ (1,0) [0|3] "" Vector__XXX
+
+BO_ 4 RVC: 5 Vector__XXX
+ SG_ Y_Rotation m4 : 8|32@1- (1,8) [-3.4E+38|3.4E+38] "" Vector__XXX
+ SG_ Z_Rotation m5 : 8|32@1- (1,8) [-3.4E+38|3.4E+38] "" Vector__XXX
+ SG_ X_Rotation m3 : 8|32@1- (1,8) [-3.4E+38|3.4E+38] "" Vector__XXX
+ SG_ Z_Acceleration m2 : 8|32@1- (1,8) [-3.4E+38|3.4E+38] "" Vector__XXX
+ SG_ Y_Acceleration m1 : 8|32@1- (1,8) [-3.4E+38|3.4E+38] "" Vector__XXX
+ SG_ X_Acceleration m0 : 8|32@1- (1,8) [-3.4E+38|3.4E+38] "" Vector__XXX
+ SG_ RVC_MultiPlex M : 0|8@1+ (1,0) [0|5] "" Vector__XXX
 
 BO_ 9 GPS: 8 Vector__XXX
  SG_ GPSLatitude : 32|32@1- (1,0) [-2147483648|2147483647] "" Vector__XXX
@@ -66,7 +85,6 @@ BO_ 3 BrakePressure: 2 Vector__XXX
 
 
 
-CM_ BO_ 3221225472 "This is a message for not used signals, created by Vector CANdb++ DBC OLE DB Provider.";
 CM_ SG_ 1 Throttle1Position "throttle 1 pos sensor";
 CM_ SG_ 2 Throttle2Position "Throttle 2 pos sensor";
 CM_ SG_ 3 Brake "Brake sensor";
@@ -74,4 +92,14 @@ BA_DEF_  "MultiplexExtEnabled" ENUM  "No","Yes";
 BA_DEF_  "BusType" STRING ;
 BA_DEF_DEF_  "MultiplexExtEnabled" "No";
 BA_DEF_DEF_  "BusType" "CAN";
+SIG_VALTYPE_ 5 RearRight : 1;
+SIG_VALTYPE_ 5 RearLeft : 1;
+SIG_VALTYPE_ 5 FrontRight : 1;
+SIG_VALTYPE_ 5 FrontLeft : 1;
+SIG_VALTYPE_ 4 Y_Rotation : 1;
+SIG_VALTYPE_ 4 Z_Rotation : 1;
+SIG_VALTYPE_ 4 X_Rotation : 1;
+SIG_VALTYPE_ 4 Z_Acceleration : 1;
+SIG_VALTYPE_ 4 Y_Acceleration : 1;
+SIG_VALTYPE_ 4 X_Acceleration : 1;
 

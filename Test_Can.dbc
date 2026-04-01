@@ -37,34 +37,34 @@ BU_:
 
 
 BO_ 6 TireTemperature: 7 Vector__XXX
- SG_ RearRight_Temp_Mid m3 : 40|16@1- (1,40) [-32728|32807] "" Vector__XXX
- SG_ RearRight_Temp_Out m3 : 24|16@1- (1,24) [-32760|32775] "" Vector__XXX
- SG_ RearLeft_Temp_Mid m2 : 40|16@1- (1,40) [-32760|32775] "" Vector__XXX
- SG_ RearLeft_Temp_Out m2 : 24|16@1- (1,24) [-32760|32775] "" Vector__XXX
- SG_ FrontRight_Temp_Mid m1 : 40|16@1- (1,40) [-32728|32807] "" Vector__XXX
- SG_ FrontRight_Temp_Out m1 : 24|16@1- (1,24) [-32744|32791] "" Vector__XXX
- SG_ FrontLeft_Temp_Mid m0 : 40|16@1- (1,40) [-32728|32807] "" Vector__XXX
- SG_ FrontLeft_Temp_Out m0 : 24|16@1- (1,24) [-32744|32791] "" Vector__XXX
- SG_ RearRight_Temp_In m3 : 8|16@1- (1,8) [-32760|32775] "" Vector__XXX
- SG_ RearLeft_Temp_In m2 : 8|16@1- (1,8) [-32760|32775] "" Vector__XXX
- SG_ FrontRight_Temp_In m1 : 8|16@1- (1,8) [-32760|32775] "" Vector__XXX
- SG_ FrontLeft_Temp_In m0 : 8|16@1- (1,8) [-32760|32775] "" Vector__XXX
+ SG_ RearRight_Temp_Mid m3 : 40|16@1- (1,0) [-32768|32767] "" Vector__XXX
+ SG_ RearRight_Temp_Out m3 : 24|16@1- (1,0) [-32768|32767] "" Vector__XXX
+ SG_ RearLeft_Temp_Mid m2 : 40|16@1- (1,0) [-32768|32767] "" Vector__XXX
+ SG_ RearLeft_Temp_Out m2 : 24|16@1- (1,0) [-32768|32767] "" Vector__XXX
+ SG_ FrontRight_Temp_Mid m1 : 40|16@1- (1,0) [-32768|32767] "" Vector__XXX
+ SG_ FrontRight_Temp_Out m1 : 24|16@1- (1,0) [-32768|32767] "" Vector__XXX
+ SG_ FrontLeft_Temp_Mid m0 : 40|16@1- (1,0) [-32768|32767] "" Vector__XXX
+ SG_ FrontLeft_Temp_Out m0 : 24|16@1- (1,0) [-32768|32767] "" Vector__XXX
+ SG_ RearRight_Temp_In m3 : 8|16@1- (1,0) [-32768|32767] "" Vector__XXX
+ SG_ RearLeft_Temp_In m2 : 8|16@1- (1,0) [-32768|32767] "" Vector__XXX
+ SG_ FrontRight_Temp_In m1 : 8|16@1- (1,0) [-32768|32767] "" Vector__XXX
+ SG_ FrontLeft_Temp_In m0 : 8|16@1- (1,0) [-32768|32767] "" Vector__XXX
  SG_ TireTemperature_MultiPlex M : 0|8@1+ (1,0) [0|3] "" Vector__XXX
 
 BO_ 5 TireRPM: 5 Vector__XXX
- SG_ RearRight m3 : 8|32@1- (1,8) [-3.4E+38|3.4E+38] "" Vector__XXX
- SG_ RearLeft m2 : 8|32@1- (1,8) [-3.4E+38|3.4E+38] "" Vector__XXX
- SG_ FrontRight m1 : 8|32@1- (1,8) [-3.4E+38|3.4E+38] "" Vector__XXX
- SG_ FrontLeft m0 : 8|32@1- (1,8) [-3.4E+38|3.4E+38] "" Vector__XXX
+ SG_ RearRight m3 : 8|32@1- (1,0) [-3.4E+38|3.4E+38] "" Vector__XXX
+ SG_ RearLeft m2 : 8|32@1- (1,0) [-3.4E+38|3.4E+38] "" Vector__XXX
+ SG_ FrontRight m1 : 8|32@1- (1,0) [-3.4E+38|3.4E+38] "" Vector__XXX
+ SG_ FrontLeft m0 : 8|32@1- (1,0) [-3.4E+38|3.4E+38] "" Vector__XXX
  SG_ TireRPM_MultiPlex M : 0|8@1+ (1,0) [0|3] "" Vector__XXX
 
 BO_ 4 RVC: 5 Vector__XXX
- SG_ Y_Rotation m4 : 8|32@1- (1,8) [-3.4E+38|3.4E+38] "" Vector__XXX
- SG_ Z_Rotation m5 : 8|32@1- (1,8) [-3.4E+38|3.4E+38] "" Vector__XXX
- SG_ X_Rotation m3 : 8|32@1- (1,8) [-3.4E+38|3.4E+38] "" Vector__XXX
- SG_ Z_Acceleration m2 : 8|32@1- (1,8) [-3.4E+38|3.4E+38] "" Vector__XXX
- SG_ Y_Acceleration m1 : 8|32@1- (1,8) [-3.4E+38|3.4E+38] "" Vector__XXX
- SG_ X_Acceleration m0 : 8|32@1- (1,8) [-3.4E+38|3.4E+38] "" Vector__XXX
+ SG_ Y_Rotation m4 : 8|32@1- (1,0) [-3.4E+38|3.4E+38] "" Vector__XXX
+ SG_ Z_Rotation m5 : 8|32@1- (1,0) [-3.4E+38|3.4E+38] "" Vector__XXX
+ SG_ X_Rotation m3 : 8|32@1- (1,0) [-3.4E+38|3.4E+38] "" Vector__XXX
+ SG_ Z_Acceleration m2 : 8|32@1- (1,0) [-3.4E+38|3.4E+38] "" Vector__XXX
+ SG_ Y_Acceleration m1 : 8|32@1- (1,0) [-3.4E+38|3.4E+38] "" Vector__XXX
+ SG_ X_Acceleration m0 : 8|32@1- (1,0) [-3.4E+38|3.4E+38] "" Vector__XXX
  SG_ RVC_MultiPlex M : 0|8@1+ (1,0) [0|5] "" Vector__XXX
 
 BO_ 9 GPS: 8 Vector__XXX

@@ -36,6 +36,24 @@ BS_:
 BU_:
 
 
+BO_ 167 VoltageInfo: 8 Vector__XXX
+ SG_ VBC_Voltage : 48|16@1- (1,0) [-32768|32767] "0.1V" Vector__XXX
+ SG_ VAB_Voltage : 32|16@1- (1,0) [-32768|32767] "0.1V" Vector__XXX
+ SG_ OutputVoltage : 16|16@1- (1,0) [-32768|32767] "0.1V" Vector__XXX
+ SG_ DCBusVoltage : 0|16@1- (1,0) [-32768|32767] "0.1V" Vector__XXX
+
+BO_ 166 CurrentInfo: 8 Vector__XXX
+ SG_ DCBusCurrent : 48|16@1- (1,0) [-32768|32767] "0.1A" Vector__XXX
+ SG_ PhaseCCurrent : 32|16@1- (1,0) [-32768|32767] "0.1A" Vector__XXX
+ SG_ PhaseBCurrent : 16|16@1- (1,0) [-32768|32767] "0.1A" Vector__XXX
+ SG_ PhaseACurrent : 0|16@1- (1,0) [-32768|32767] "0.1A" Vector__XXX
+
+BO_ 165 MotorPositionInfo: 8 Vector__XXX
+ SG_ DeltaResolverAngle : 48|16@1- (1,0) [-32768|32767] "0.1deg" Vector__XXX
+ SG_ ElectricalFrequency : 32|16@1- (1,0) [-32768|32767] "0.1Hz" Vector__XXX
+ SG_ MotorSpeed : 16|16@1- (1,0) [-32768|32767] "RPM" Vector__XXX
+ SG_ MotorAngle : 0|16@1- (1,0) [-32768|32767] "0.1deg" Vector__XXX
+
 BO_ 164 DigitalInputStatus: 8 Vector__XXX
  SG_ DigitalInput8 : 56|8@1+ (1,0) [0|1] "" Vector__XXX
  SG_ ValetMode : 48|8@1+ (1,0) [0|1] "" Vector__XXX

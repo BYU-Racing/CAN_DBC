@@ -36,6 +36,22 @@ BS_:
 BU_:
 
 
+BO_ 164 DigitalInputStatus: 8 Vector__XXX
+ SG_ DigitalInput8 : 56|8@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ ValetMode : 48|8@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ StartSwitch : 40|8@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ IgnitionSwitch : 32|8@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ REGENDisableSwitch : 24|8@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ BrakeSwitch : 16|8@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ ReverseSwitch : 8|8@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ ForwardSwitch : 0|8@1+ (1,0) [0|1] "" Vector__XXX
+
+BO_ 163 AnalogInputVoltages: 8 Vector__XXX
+ SG_ AnalogInput4 : 48|16@1- (1,0) [-32768|32767] "" Vector__XXX
+ SG_ AnalogInput3 : 32|16@1- (1,0) [-32768|32767] "" Vector__XXX
+ SG_ AnalogInput2 : 16|16@1- (1,0) [-32768|32767] "" Vector__XXX
+ SG_ AnalogInput1 : 0|16@1- (1,0) [-32768|32767] "" Vector__XXX
+
 BO_ 162 MotorTemps: 8 Vector__XXX
  SG_ TorqueShudder : 48|16@1- (1,0) [-32768|32767] "" Vector__XXX
  SG_ MotorTemp : 32|16@1- (1,0) [-32768|32767] "" Vector__XXX

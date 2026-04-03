@@ -36,6 +36,35 @@ BS_:
 BU_:
 
 
+BO_ 173 ModulationIndex: 8 Vector__XXX
+ SG_ IqCommand : 48|16@1- (1,0) [-32768|32767] "0.1V" Vector__XXX
+ SG_ IdCommand : 32|16@1- (1,0) [-32768|32767] "0.1V" Vector__XXX
+ SG_ FluxWeakeningOutput : 16|16@1- (1,0) [-32768|32767] "0.1V" Vector__XXX
+ SG_ ModulationIndex : 0|16@1- (1,0) [-32768|32767] "0.01x" Vector__XXX
+
+BO_ 172 TorqueAndTimerInfo: 8 Vector__XXX
+ SG_ PowerOnTimer : 32|32@1+ (1,0) [0|4294967295] "3ms" Vector__XXX
+ SG_ TorqueFeedback : 16|16@1- (1,0) [-32768|32767] "0.1Nm" Vector__XXX
+ SG_ CommandedTorque : 0|16@1- (1,0) [-32768|32767] "0.1Nm" Vector__XXX
+
+BO_ 171 FaultCodes: 8 Vector__XXX
+ SG_ RunFaultHigh : 48|16@1+ (1,0) [0|65535] "" Vector__XXX
+ SG_ RunFaultLow : 32|16@1+ (1,0) [0|65535] "" Vector__XXX
+ SG_ POSTFaultHigh : 16|16@1+ (1,0) [0|65535] "" Vector__XXX
+ SG_ POSTFaultLow : 0|16@1+ (1,0) [0|65535] "" Vector__XXX
+
+BO_ 169 InternalVoltages: 8 Vector__XXX
+ SG_ Reference12V : 48|16@1- (1,0) [-32768|32767] "0.01V" Vector__XXX
+ SG_ Reference5_0V : 32|16@1- (1,0) [-32768|32767] "0.01V" Vector__XXX
+ SG_ Reference2_5V : 16|16@1- (1,0) [-32768|32767] "0.01V" Vector__XXX
+ SG_ Reference1_5V : 0|16@1- (1,0) [-32768|32767] "0.01V" Vector__XXX
+
+BO_ 168 FluxInfo: 8 Vector__XXX
+ SG_ IqFeedback : 48|16@1- (1,0) [-32768|32767] "0.1A" Vector__XXX
+ SG_ IdFeedback : 32|16@1- (1,0) [-32768|32767] "0.1A" Vector__XXX
+ SG_ FluxFeedback : 16|16@1- (1,0) [-32768|32767] "mWb" Vector__XXX
+ SG_ FluxCommand : 0|16@1- (1,0) [-32768|32767] "mWb" Vector__XXX
+
 BO_ 167 VoltageInfo: 8 Vector__XXX
  SG_ VBC_Voltage : 48|16@1- (1,0) [-32768|32767] "0.1V" Vector__XXX
  SG_ VAB_Voltage : 32|16@1- (1,0) [-32768|32767] "0.1V" Vector__XXX

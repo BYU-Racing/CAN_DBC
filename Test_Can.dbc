@@ -36,6 +36,25 @@ BS_:
 BU_:
 
 
+BO_ 192 ControlCommand: 8 Vector__XXX
+ SG_ TorqueLimit : 48|16@1- (1,0) [-32768|32767] "0.1Nm" Vector__XXX
+ SG_ CC_Unused : 43|5@1- (1,0) [0|0] "" Vector__XXX
+ SG_ OverrideSpeed : 42|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Discharge : 41|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ EnableInverter : 40|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Direction : 32|8@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Speed : 16|16@1- (1,0) [-32768|32767] "RPM" Vector__XXX
+ SG_ Torque : 0|16@1- (1,0) [-32768|32767] "0.1Nm" Vector__XXX
+
+BO_ 177 TorqueCapability: 8 Vector__XXX
+ SG_ TorqueCapability : 0|16@1- (1,0) [-32768|32767] "0.1Nm" Vector__XXX
+
+BO_ 176 HighSpeed: 8 Vector__XXX
+ SG_ DCBusVoltage : 48|16@1- (1,0) [-32768|32767] "0.1V" Vector__XXX
+ SG_ MotorSpeed : 32|16@1- (1,0) [-32768|32767] "RPM" Vector__XXX
+ SG_ TorqueFeedback : 16|16@1- (1,0) [-32768|32767] "0.1Nm" Vector__XXX
+ SG_ TorqueCommand : 0|16@1- (1,0) [-32768|32767] "0.1Nm" Vector__XXX
+
 BO_ 173 ModulationIndex: 8 Vector__XXX
  SG_ IqCommand : 48|16@1- (1,0) [-32768|32767] "0.1V" Vector__XXX
  SG_ IdCommand : 32|16@1- (1,0) [-32768|32767] "0.1V" Vector__XXX

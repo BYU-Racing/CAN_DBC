@@ -34,7 +34,19 @@ NS_ :
 BS_:
 
 BU_:
+VAL_TABLE_ Write_Success 1 "Success" 0 "Not Written" ;
+VAL_TABLE_ Read_Write 1 "Write" 0 "Read" ;
 
+
+BO_ 193 ParameterCommand: 8 Vector__XXX
+ SG_ ParamCommand_Data : 32|16@1+ (1,0) [0|65535] "" Vector__XXX
+ SG_ ParamCom_RW : 16|8@1- (1,0) [0|1] "" Vector__XXX
+ SG_ ParamCom_ParameterAddress : 0|16@1+ (1,0) [0|65535] "" Vector__XXX
+
+BO_ 194 ParameterResponse: 8 Vector__XXX
+ SG_ ParamResp_Data : 32|16@1+ (1,0) [0|65535] "" Vector__XXX
+ SG_ ParamResp_Success : 16|8@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ ParamResp_ParameterAddress : 0|16@1+ (1,0) [0|65535] "" Vector__XXX
 
 BO_ 192 ControlCommand: 8 Vector__XXX
  SG_ TorqueLimit : 48|16@1- (1,0) [-32768|32767] "0.1Nm" Vector__XXX
@@ -192,6 +204,8 @@ BA_DEF_  "MultiplexExtEnabled" ENUM  "No","Yes";
 BA_DEF_  "BusType" STRING ;
 BA_DEF_DEF_  "MultiplexExtEnabled" "No";
 BA_DEF_DEF_  "BusType" "CAN";
+VAL_ 193 ParamCom_RW 1 "Write" 0 "Read" ;
+VAL_ 194 ParamResp_Success 1 "Success" 0 "Not Written" ;
 SIG_VALTYPE_ 5 RearRight : 1;
 SIG_VALTYPE_ 5 RearLeft : 1;
 SIG_VALTYPE_ 5 FrontRight : 1;

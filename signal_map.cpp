@@ -1,3 +1,7 @@
+// File:    signal_map.cpp
+// Author:  Blake Hill
+// Usage:   Provides signal map object and signal decoding for CAN parsing.
+
 #include "signal_map.hpp"
 
 SignalMap::SignalMap(std::unordered_map<std::string, DecodedSignal> sig_map) : sig_map(sig_map) {}

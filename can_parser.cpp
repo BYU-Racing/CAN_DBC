@@ -1,5 +1,7 @@
-// Author: Blake Hill
-// Usage: Parses CAN messages through the CAN dbc file.
+// File:    can_parser.cpp
+// Author:  Blake Hill
+// Usage:   Parses CAN messages through the CAN dbc file, create a CanParser object and
+//          then pass in CAN_message_t objects for their signals.
 
 #include "can_parser.hpp"
 #include <fstream>
@@ -44,9 +46,7 @@ std::optional<SignalMap> CanParser::parse_frame(const CAN_message_t &frame) {
     auto iter = msgMap.find(frame.id);
     if (iter != msgMap.end()) {
         const dbcppp::IMessage *message = iter->second;
-        // printf(
-        //     "Message: %s | ID: %llu | NumBytes: %I64u\n", message->Name().c_str(), message->Id(),
-        //     message->MessageSize());
+
         std::unordered_map<std::string, DecodedSignal> sigMap;
         for (const dbcppp::ISignal &sig : message->Signals()) {
             auto raw_sig = sig.Decode(frame.buf);
@@ -58,7 +58,6 @@ std::optional<SignalMap> CanParser::parse_frame(const CAN_message_t &frame) {
             decodeSig.unit = sig.Unit();
 
             sigMap[sig.Name()] = decodeSig;
-            // printf("Signal: %s, Val: %f", sig.Name(), val);
         }
         return SignalMap(sigMap);
     } else {
@@ -99,7 +98,7 @@ void CanParser::print_messages() {
 
 int main() {
     CanParser canparse = CanParser();
-    // print_messages(dbc_file_path);
+    // canparse.print_messages();
     CAN_message_t frame{};
     frame.len = 8;
     frame.id = 0xB0;

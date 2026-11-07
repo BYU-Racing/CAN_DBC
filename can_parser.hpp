@@ -39,5 +39,3 @@ class CanParser {
     // Pass in a DBC INetwork object, get dict of messages out
     messageMap loadMessages();
 };
-
-void parse_file(); // Parses a whole file of data

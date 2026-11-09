@@ -9,7 +9,7 @@
 #include <optional>
 #include <unordered_map>
 
-using messageMap = std::unordered_map<uint64_t, const dbcppp::IMessage *>;
+using messageMap = std::unordered_map<uint32_t, const dbcppp::IMessage *>;
 
 class CanParser {
   public:
@@ -18,6 +18,10 @@ class CanParser {
 
     // Pass in a CAN frame and messages, get dict of decoded signals out
     std::optional<SignalMap> parse_frame(const CAN_message_t &frame);
+
+    // Pass in an ID and a map of signals, get a CAN_message_t object back
+    std::optional<CAN_message_t>
+    create_frame(const uint32_t id, const std::unordered_map<std::string, double> &input_signals);
 
     // Get Message Map
     messageMap getMessages();

@@ -8,11 +8,11 @@
 #include <iostream>
 #include <stdexcept>
 
-using msgMap = std::unordered_map<uint64_t, const dbcppp::IMessage *>;
+using msgMap = std::unordered_map<uint32_t, const dbcppp::IMessage *>;
 
 CanParser::CanParser() {
-    this->dbc = load_dbc();
-    this->msgMap = loadMessages();
+    dbc = load_dbc();
+    msgMap = loadMessages();
 }
 
 CanParser::CanParser(const std::filesystem::path dbc_file_path) : dbc_file_path(dbc_file_path) {
@@ -21,43 +21,37 @@ CanParser::CanParser(const std::filesystem::path dbc_file_path) : dbc_file_path(
 }
 
 std::unique_ptr<dbcppp::INetwork> CanParser::load_dbc() {
-    std::ifstream dbc_file(this->dbc_file_path);
+    std::ifstream dbc_file(dbc_file_path);
     if (!dbc_file.is_open()) {
-        throw std::runtime_error("Failed to open DBC file:" + this->dbc_file_path.string());
+        throw std::runtime_error("Failed to open DBC file:" + dbc_file_path.string());
     }
     std::unique_ptr<dbcppp::INetwork> dbc = dbcppp::INetwork::LoadDBCFromIs(dbc_file);
     if (!dbc) {
-        throw std::runtime_error("Failed to load DBC file:" + this->dbc_file_path.string());
+        throw std::runtime_error("Failed to load DBC file:" + dbc_file_path.string());
     }
     return dbc;
 }
 
 messageMap CanParser::loadMessages() {
-    std::unordered_map<uint64_t, const dbcppp::IMessage *> messages;
-    for (const dbcppp::IMessage &msg : this->dbc->Messages()) {
-        messages.insert(std::make_pair(msg.Id(), &msg));
+    std::unordered_map<uint32_t, const dbcppp::IMessage *> messages;
+    for (const dbcppp::IMessage &msg : dbc->Messages()) {
+        messages.insert(std::make_pair(static_cast<uint32_t>(msg.Id()), &msg));
     }
     return messages;
 }
 
-messageMap CanParser::getMessages() { return this->msgMap; }
+messageMap CanParser::getMessages() { return msgMap; }
 
 std::optional<SignalMap> CanParser::parse_frame(const CAN_message_t &frame) {
     auto iter = msgMap.find(frame.id);
     if (iter != msgMap.end()) {
         const dbcppp::IMessage *message = iter->second;
 
-        std::unordered_map<std::string, DecodedSignal> sigMap;
+        std::unordered_map<std::string, double> sigMap;
         for (const dbcppp::ISignal &sig : message->Signals()) {
             auto raw_sig = sig.Decode(frame.buf);
-            double sig_val = sig.RawToPhys(raw_sig);
 
-            DecodedSignal decodeSig;
-            decodeSig.name = sig.Name();
-            decodeSig.value = sig_val;
-            decodeSig.unit = sig.Unit();
-
-            sigMap[sig.Name()] = decodeSig;
+            sigMap[sig.Name()] = sig.RawToPhys(raw_sig);
         }
         return SignalMap(sigMap);
     } else {
@@ -66,23 +60,67 @@ std::optional<SignalMap> CanParser::parse_frame(const CAN_message_t &frame) {
     }
 }
 
+std::optional<CAN_message_t> CanParser::create_frame(
+    const uint32_t id, const std::unordered_map<std::string, double> &input_signals
+) {
+    auto iter = msgMap.find(id);
+    if (iter != msgMap.end()) {
+        const dbcppp::IMessage *msg = iter->second;
+
+        CAN_message_t can_msg = {};
+
+        // For each signal, put that data into can_msg.
+        // If signal not found in input, frame isn't valid.
+        auto msgSignals = msg->Signals();
+        for (const auto &msgSignal : msgSignals) {
+            auto in_sig_iter = input_signals.find(msgSignal.Name());
+            if (in_sig_iter != input_signals.end()) { // If signal is found in input_signals
+                double in_val = in_sig_iter->second;
+
+                // If in_val is within signal min/max, make msgBuf with it
+                if ((in_val >= msgSignal.Minimum()) && (in_val <= msgSignal.Maximum())) {
+                    uint64_t raw = msgSignal.PhysToRaw(in_val);
+                    msgSignal.Encode(raw, can_msg.buf);
+                } else {
+                    printf(
+                        "Signal: %s, val: %f not in bounds; Min: %f, Max: %f\n", msgSignal.Name(),
+                        in_val, msgSignal.Minimum(), msgSignal.Maximum()
+                    );
+                    return std::nullopt;
+                }
+            } else {
+                std::cerr << "Signal " << msgSignal.Name() << " not in input_signals\n";
+                return std::nullopt;
+            }
+        }
+
+        // If signals are fully complete, fill out the rest of the msg struct and return it.
+        can_msg.id = id;
+        can_msg.len = static_cast<uint8_t>(msg->MessageSize());
+        can_msg.flags.extended = (msg->Id() > 0x7FF);
+        can_msg.flags.remote = false; // false = 0
+        return can_msg;
+    } else {
+        std::cerr << "ID " << id << " not found\n";
+        return std::nullopt;
+    }
+}
+
 void CanParser::print_network_info() {
-    std::cout << "DBC Version: " << this->dbc->Version() << "\n";
-    std::cout << "Number of Nodes: " << this->dbc->Nodes_Size() << "\n";
-    std::cout << "Number of Messages: " << this->dbc->Messages_Size() << "\n";
-    std::cout << "Number of Value Tables: " << this->dbc->ValueTables_Size() << "\n";
-    std::cout << "Number of Environment Variables: " << this->dbc->EnvironmentVariables_Size()
-              << "\n";
-    std::cout << "Number of Attribute Definitions: " << this->dbc->AttributeDefinitions_Size()
-              << "\n";
-    std::cout << "Number of Attribute Defaults: " << this->dbc->AttributeDefaults_Size() << "\n";
-    std::cout << "Number of Attribute Values: " << this->dbc->AttributeValues_Size() << "\n";
-    std::cout << "Comment: " << this->dbc->Comment() << "\n";
+    std::cout << "DBC Version: " << dbc->Version() << "\n";
+    std::cout << "Number of Nodes: " << dbc->Nodes_Size() << "\n";
+    std::cout << "Number of Messages: " << dbc->Messages_Size() << "\n";
+    std::cout << "Number of Value Tables: " << dbc->ValueTables_Size() << "\n";
+    std::cout << "Number of Environment Variables: " << dbc->EnvironmentVariables_Size() << "\n";
+    std::cout << "Number of Attribute Definitions: " << dbc->AttributeDefinitions_Size() << "\n";
+    std::cout << "Number of Attribute Defaults: " << dbc->AttributeDefaults_Size() << "\n";
+    std::cout << "Number of Attribute Values: " << dbc->AttributeValues_Size() << "\n";
+    std::cout << "Comment: " << dbc->Comment() << "\n";
 }
 
 void CanParser::print_messages() {
     try {
-        for (const auto &msg : this->dbc->Messages()) {
+        for (const auto &msg : dbc->Messages()) {
             std::cout << msg.Name() << " | ID: " << msg.Id() << " | Bytes: " << msg.MessageSize()
                       << '\n';
             for (const auto &sig : msg.Signals()) {

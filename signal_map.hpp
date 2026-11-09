@@ -4,22 +4,16 @@
 #include <string>
 #include <unordered_map>
 
-struct DecodedSignal {
-    std::string name;
-    double value;
-    std::string unit;
-};
-
 class SignalMap {
   public:
-    SignalMap(std::unordered_map<std::string, DecodedSignal> sig_map);
-
-    // Gets DecodedSignal struct from signal name
-    std::optional<DecodedSignal> getSignalByName(std::string sig_name);
+    SignalMap(std::unordered_map<std::string, double> sig_map);
 
     // Gets data held by signal from signal name
     std::optional<double> getSignalValue(std::string sig_name);
 
+    // Gets signals from SignalMap struct
+    std::unordered_map<std::string, double> getSignals() { return sig_map; }
+
   private:
-    std::unordered_map<std::string, DecodedSignal> sig_map;
+    std::unordered_map<std::string, double> sig_map;
 };

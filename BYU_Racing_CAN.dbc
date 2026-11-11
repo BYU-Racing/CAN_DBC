@@ -243,7 +243,7 @@ BO_ 258 ECUBoardTemp: 8 Vector__XXX
  SG_ ECUBoardTemp : 0|8@1+ (1,0) [0|255] "deg C" Vector__XXX
 
 BO_ 259 ECUChipTemp: 8 Vector__XXX
- SG_ ECUChipTemp : 0|8@1+ (1,0) [0|255] "deg C" Vector__XXX
+ SG_ ECUChipTemp : 0|32@1+ (1,0) [0|255] "deg C" Vector__XXX
 
 BO_ 261 CoolantFlow: 8 Vector__XXX
 

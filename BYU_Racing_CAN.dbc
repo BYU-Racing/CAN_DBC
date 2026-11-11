@@ -230,7 +230,59 @@ BO_ 2 Throttle2Position: 2 DCF
 BO_ 3 BrakePressure: 2 DCF
  SG_ Brake : 0|16@1+ (1,0) [0|65535] "" Vector__XXX
 
+BO_ 25 SteeringAngle: 8 Sensor
+ SG_ SteeringAngle : 0|8@1+ (1,0) [0|255] "deg" Vector__XXX
 
+BO_ 256 RideHeight: 8 Vector__XXX
+ SG_ RideHeight : 0|8@1+ (1,0) [0|255] "in" Vector__XXX
+
+BO_ 257 LVSOC: 8 Vector__XXX
+ SG_ LVSOC : 0|8@1+ (1,0) [0|255] "V" Vector__XXX
+
+BO_ 258 ECUBoardTemp: 8 Vector__XXX
+ SG_ ECUBoardTemp : 0|8@1+ (1,0) [0|255] "deg C" Vector__XXX
+
+BO_ 259 ECUChipTemp: 8 Vector__XXX
+ SG_ ECUChipTemp : 0|32@1+ (1,0) [0|255] "deg C" Vector__XXX
+
+BO_ 261 CoolantFlow: 8 Vector__XXX
+
+BO_ 262 NEW_MSG_106: 8 Vector__XXX
+
+BO_ 263 NEW_MSG_107: 8 Vector__XXX
+
+BO_ 264 NEW_MSG_108: 8 Vector__XXX
+
+BO_ 265 NEW_MSG_109: 8 Vector__XXX
+
+BO_ 266 NEW_MSG_10a: 8 Vector__XXX
+
+BO_ 267 NEW_MSG_10b: 8 Vector__XXX
+
+BO_ 268 NEW_MSG_10c: 8 Vector__XXX
+
+BO_ 269 NEW_MSG_10d: 8 Vector__XXX
+
+
+VAL_TABLE_ InverterCommandMode 0 "CAN Mode" 1 "VSM Mode" ;
+VAL_TABLE_ InverterActiveDischargeState 0 "Discharge Disabled" 1 "Discharge Enabled, waiting" 2 "Performing Speed Check" 3 "Discharge Actively occurring" 4 "Discharge Completed" ;
+VAL_TABLE_ SelfSensingAssistEnable 0 "Disabled" 1 "Enabled" ;
+VAL_TABLE_ InverterRunMode 0 "Torque Mode" 1 "Speed Mode" ;
+VAL_TABLE_ RelayState 0 "Relay 1 Status" 1 "Relay 2 Status" 2 "Relay 3 Status" 3 "Relay 4 Status" 4 "Relay 5 Status" 5 "Relay 6 Status" ;
+VAL_TABLE_ InverterState 0 "Power On" 1 "Stop" 2 "Open Loop" 3 "Closed Loop" 4 "Wait" 5 "Internal" 6 "Internal" 7 "Internal" 8 "Idle Run" 9 "Idle Stop" 10 "Internal" 11 "Internal" 12 "Internal" ;
+VAL_TABLE_ VSMState 0 "VSM Start" 1 "Pre-charge Init" 2 "Pre-charge Active" 3 "Pre-charge Complete" 4 "VSM Wait" 5 "VSM Ready" 6 "Motor Running" 7 "Blink Fault Code" 14 "Shutdown in Process" 15 "Recycle Power" ;
+VAL_TABLE_ Write_Success 0 "Not Written" 1 "Success" ;
+VAL_TABLE_ Read_Write 0 "Read" 1 "Write" ;
+
+VAL_ 170 InverterCommandMode 0 "CAN Mode" 1 "VSM Mode" ;
+VAL_ 170 InverterDischarge 0 "Discharge Disabled" 1 "Discharge Enabled, waiting" 2 "Performing Speed Check" 3 "Discharge Actively occurring" 4 "Discharge Completed" ;
+VAL_ 170 SelfSensingAssistActive 0 "Disabled" 1 "Enabled" ;
+VAL_ 170 InverterRunModeState 0 "Torque Mode" 1 "Speed Mode" ;
+VAL_ 170 RelayState 0 "Relay 1 Status" 1 "Relay 2 Status" 2 "Relay 3 Status" 3 "Relay 4 Status" 4 "Relay 5 Status" 5 "Relay 6 Status" ;
+VAL_ 170 InverterState 0 "Power On" 1 "Stop" 2 "Open Loop" 3 "Closed Loop" 4 "Wait" 5 "Internal" 6 "Internal" 7 "Internal" 8 "Idle Run" 9 "Idle Stop" 10 "Internal" 11 "Internal" 12 "Internal" ;
+VAL_ 170 VSMState 0 "VSM Start" 1 "Pre-charge Init" 2 "Pre-charge Active" 3 "Pre-charge Complete" 4 "VSM Wait" 5 "VSM Ready" 6 "Motor Running" 7 "Blink Fault Code" 14 "Shutdown in Process" 15 "Recycle Power" ;
+VAL_ 193 ParamCom_RW 0 "Read" 1 "Write" ;
+VAL_ 194 ParamResp_Success 0 "Not Written" 1 "Success" ;
 
 CM_ SG_ 1 Throttle1Position "throttle 1 pos sensor";
 CM_ SG_ 2 Throttle2Position "Throttle 2 pos sensor";

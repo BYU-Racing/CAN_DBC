@@ -7,18 +7,11 @@
  * FlexCAN_T4.h, so we have to make a "fake" `CAN_message_t` so that we can run the test.
  * This is literally just copied from FlexCAN_T4.h. */
 typedef struct CAN_message_t {
-    uint32_t id;        // can identifier
-    uint16_t timestamp; // FlexCAN time when message arrived
-    uint8_t idhit;      // filter that id came from
+    uint32_t id; // can identifier
     struct {
         bool extended; // identifier is extended (29-bit)
         bool remote;   // remote transmission request packet type
-        bool overrun;  // message overrun
-        bool reserved;
     } flags;
     uint8_t len;    // length of data
     uint8_t buf[8]; // data
-    int8_t mb;      // used to identify mailbox reception
-    uint8_t bus;    // used to identify where the message came from when events() is used.
-    bool seq;       // sequential frames
 } CAN_message_t;

@@ -68,6 +68,10 @@ std::optional<CAN_message_t> CanParser::create_frame(
         const dbcppp::IMessage *msg = iter->second;
 
         CAN_message_t can_msg = {};
+        if (static_cast<size_t>(msg->MessageSize()) > sizeof(can_msg.buf)) {
+            std::cerr << "Message size " << msg->MessageSize() << " too large\n";
+            return std::nullopt;
+        }
 
         // For each signal, put that data into can_msg.
         // If signal not found in input, frame isn't valid.
@@ -80,6 +84,7 @@ std::optional<CAN_message_t> CanParser::create_frame(
                 // If in_val is within signal min/max, make msgBuf with it
                 if ((in_val >= msgSignal.Minimum()) && (in_val <= msgSignal.Maximum())) {
                     uint64_t raw = msgSignal.PhysToRaw(in_val);
+
                     msgSignal.Encode(raw, can_msg.buf);
                 } else {
                     printf(

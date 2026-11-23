@@ -9,7 +9,9 @@
 #include <stdexcept>
 
 using msgMap = std::unordered_map<uint32_t, const dbcppp::IMessage *>;
+using MUX = dbcppp::ISignal::EMultiplexer;
 
+// MARK: Constructor
 CanParser::CanParser() {
     dbc = load_dbc();
     msgMap = loadMessages();
@@ -42,15 +44,33 @@ messageMap CanParser::loadMessages() {
 
 messageMap CanParser::getMessages() { return msgMap; }
 
+// MARK: Parse_frame
+
 std::optional<SignalMap> CanParser::parse_frame(const CAN_message_t &frame) {
     auto iter = msgMap.find(frame.id);
     if (iter != msgMap.end()) {
         const dbcppp::IMessage *message = iter->second;
 
+        // Check if there is a MUX'ed signal selector here, take the first one
+        const dbcppp::ISignal *mux_selector = nullptr;
+        for (const dbcppp::ISignal &sig : message->Signals()) {
+            if (sig.MultiplexerIndicator() == MUX::MuxSwitch) {
+                mux_selector = &sig;
+                break;
+            }
+        }
+        const auto mux_val = mux_selector ? mux_selector->Decode(frame.buf) : 0;
+
         std::unordered_map<std::string, double> sigMap;
         for (const dbcppp::ISignal &sig : message->Signals()) {
-            auto raw_sig = sig.Decode(frame.buf);
+            // Check if sig is a MUX'ed value, if selector is null or val doesn't match, skip sig
+            if (sig.MultiplexerIndicator() == MUX::MuxValue) {
+                if (!mux_selector || sig.MultiplexerSwitchValue() != mux_val) {
+                    continue;
+                }
+            }
 
+            const auto raw_sig = sig.Decode(frame.buf);
             sigMap[sig.Name()] = sig.RawToPhys(raw_sig);
         }
         return SignalMap(sigMap);
@@ -59,6 +79,8 @@ std::optional<SignalMap> CanParser::parse_frame(const CAN_message_t &frame) {
         return std::nullopt;
     }
 }
+
+// MARK: Create_frame
 
 std::optional<CAN_message_t> CanParser::create_frame(
     const uint32_t id, const std::unordered_map<std::string, double> &input_signals
@@ -88,8 +110,8 @@ std::optional<CAN_message_t> CanParser::create_frame(
                     msgSignal.Encode(raw, can_msg.buf);
                 } else {
                     printf(
-                        "Signal: %s, val: %f not in bounds; Min: %f, Max: %f\n", msgSignal.Name(),
-                        in_val, msgSignal.Minimum(), msgSignal.Maximum()
+                        "Signal: %s, val: %f not in bounds; Min: %f, Max: %f\n",
+                        msgSignal.Name().c_str(), in_val, msgSignal.Minimum(), msgSignal.Maximum()
                     );
                     return std::nullopt;
                 }

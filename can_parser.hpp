@@ -16,7 +16,7 @@ class CanParser {
     CanParser();
     CanParser(const std::filesystem::path dbc_file_path);
 
-    // Pass in a CAN frame and messages, get dict of decoded signals out
+    // Pass in a CAN frame and messages, get dict of decoded signals out. Max of 1 MUX.
     std::optional<SignalMap> parse_frame(const CAN_message_t &frame);
 
     // Pass in an ID and a map of signals, get a CAN_message_t object back

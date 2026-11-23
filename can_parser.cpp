@@ -50,6 +50,10 @@ std::optional<SignalMap> CanParser::parse_frame(const CAN_message_t &frame) {
     auto iter = msgMap.find(frame.id);
     if (iter != msgMap.end()) {
         const dbcppp::IMessage *message = iter->second;
+        if (frame.len != message->MessageSize()) {
+            std::cerr << "Err: Message " << message->Name() << " needs length "
+                      << message->MessageSize() << ", frame has length " << frame.len << "\n";
+        }
 
         // Check if there is a MUX'ed signal selector here, take the first one
         const dbcppp::ISignal *mux_selector = nullptr;
@@ -61,6 +65,7 @@ std::optional<SignalMap> CanParser::parse_frame(const CAN_message_t &frame) {
         }
         const auto mux_val = mux_selector ? mux_selector->Decode(frame.buf) : 0;
 
+        // Loop through signals in message and decode them into a SignalMap obj to return
         std::unordered_map<std::string, double> sigMap;
         for (const dbcppp::ISignal &sig : message->Signals()) {
             // Check if sig is a MUX'ed value, if selector is null or val doesn't match, skip sig
